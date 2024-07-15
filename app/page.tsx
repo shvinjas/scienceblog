@@ -99,7 +99,6 @@
 //   );
 // }
 
-
 "use client";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
@@ -125,7 +124,11 @@ export default function Home() {
       .then((response) => setPosts(response));
   }, []);
 
-  const searchPost = (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const searchPost = (
+    event:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     if ("key" in event && event.type === "keydown" && event.key !== "Enter") {
       return;
     }
@@ -148,13 +151,14 @@ export default function Home() {
           Welcome to Science Unveiled, your gateway to the wonders of the
           universe! Here, we delve into the latest scientific discoveries,
           explore groundbreaking research, and uncover the mysteries of the
-          natural world. Whether you're a seasoned scientist or just curious
-          about the cosmos, our blog offers something for everyone. From the
-          depths of the ocean to the far reaches of space, we cover a diverse
-          range of topics, bringing you insightful articles, expert interviews,
-          and thought-provoking discussions. Join us on this exciting journey as
-          we expand our understanding of the world and beyond. Stay curious,
-          stay informed, and let's explore the frontiers of science together!
+          natural world. Whether you&apos;re a seasoned scientist or just
+          curious about the cosmos, our blog offers something for everyone. From
+          the depths of the ocean to the far reaches of space, we cover a
+          diverse range of topics, bringing you insightful articles, expert
+          interviews, and thought-provoking discussions. Join us on this
+          exciting journey as we expand our understanding of the world and
+          beyond. Stay curious, stay informed, and let&apos;s explore the
+          frontiers of science together!
         </p>
       </main>
       <div className="flex justify-end px-4">
@@ -179,9 +183,11 @@ export default function Home() {
         {posts.map((post) => (
           <Link key={post.id} href={"/post/" + post._id}>
             <div className="border border-gray-200 p-4">
-              <img
+              <Image
                 className="w-full h-54 object-cover mb-4"
                 src={post.image}
+                width={1260} // Set the width property
+                height={750} // Set the height property
                 alt="Post Image"
               />
               <h2 className="text-xl font-semibold mb-2">{post.title}</h2>

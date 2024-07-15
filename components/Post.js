@@ -1,12 +1,10 @@
 // "use client"
 // import { useEffect,useState } from "react";
 
-
 // export default function Post({params}){
 // const id=params.id;
 
 // const [post,setPost]=useState([]);
-
 
 // useEffect(()=>{
 // fetch(process.env.NEXT_PUBLIC_API_URL+"/post/"+id)
@@ -71,9 +69,9 @@
 //   );
 // }
 
-
-"use client"
+"use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Post({ params }) {
   const id = params.id;
@@ -95,9 +93,9 @@ export default function Post({ params }) {
 
     const third = Math.ceil(sentences.length / 3);
     return [
-      sentences.slice(0, third).join(' '),
-      sentences.slice(third, 2 * third).join(' '),
-      sentences.slice(2 * third).join(' ')
+      sentences.slice(0, third).join(" "),
+      sentences.slice(third, 2 * third).join(" "),
+      sentences.slice(2 * third).join(" "),
     ];
   };
 
@@ -109,9 +107,17 @@ export default function Post({ params }) {
         <main className="container mx-auto px-4 py-6 mb-10 ">
           <p className="text-2xl font-bold mb-4">{post.title}</p>
           <p className="text-gray-500">{post.created_at_formatted}</p>
-          <img src={post.image} alt="Post Image" className="my-4 w-96 h-64 mt-8" />
+          <Image
+            src={post.image}
+            width={1260} // Set the width property
+            height={750} // Set the height property
+            alt="Post Image"
+            className="my-4 w-96 h-64 mt-8"
+          />
           {descriptionParts.map((part, index) => (
-            <p key={index} className="mb-4">{part}</p>
+            <p key={index} className="mb-4">
+              {part}
+            </p>
           ))}
         </main>
       )}
