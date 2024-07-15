@@ -290,11 +290,16 @@ export default function Home() {
         {posts.map((post) => (
           <Link key={post.id} href={"/post/" + post._id}>
             <div className="border border-gray-200 p-4">
-              <Image
+              {/* <Image
                 className="w-full h-54 object-cover mb-4"
                 src={post.image}
                 width={1260} // Set the width property
                 height={750} // Set the height property
+                alt="Post Image"
+              /> */}
+                <img
+                className="w-full h-54 object-cover mb-4"
+                src={post.image}
                 alt="Post Image"
               />
               <h2 className="text-xl font-semibold mb-2">{post.title}</h2>

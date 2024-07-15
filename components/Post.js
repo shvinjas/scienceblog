@@ -107,13 +107,14 @@ export default function Post({ params }) {
         <main className="container mx-auto px-4 py-6 mb-10 ">
           <p className="text-2xl font-bold mb-4">{post.title}</p>
           <p className="text-gray-500">{post.created_at_formatted}</p>
-          <Image
+          {/* <Image
             src={post.image}
             width={1260} // Set the width property
             height={750} // Set the height property
             alt="Post Image"
             className="my-4 w-96 h-64 mt-8"
-          />
+          /> */}
+          <img src={post.image} alt="Post Image" className="my-4 w-96 h-64" />
           {descriptionParts.map((part, index) => (
             <p key={index} className="mb-4">
               {part}
