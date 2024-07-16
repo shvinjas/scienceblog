@@ -226,7 +226,7 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_API_URL + "/posts")
+    fetch("http://localhost:3000/api" + "/posts")
       .then((response) => response.json())
       .then((response) => setPosts(response));
   }, []);

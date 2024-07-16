@@ -126,7 +126,6 @@
 //   );
 // }
 
-
 // "use client";
 // import { useEffect, useState } from "react";
 // import Image from "next/image";
@@ -192,7 +191,6 @@
 //   );
 // }
 
-
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -203,7 +201,7 @@ export default function Post({ params }) {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_API_URL + "/post/" + id)
+    fetch("http://localhost:3000/api" + "/post/" + id)
       .then((response) => response.json())
       .then((response) => setPost(response))
       .catch((error) => console.error("Error fetching post:", error));
@@ -224,7 +222,9 @@ export default function Post({ params }) {
     ];
   };
 
-  const descriptionParts = post?.description ? splitDescription(post.description) : [];
+  const descriptionParts = post?.description
+    ? splitDescription(post.description)
+    : [];
 
   return (
     <>
