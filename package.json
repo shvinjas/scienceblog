@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy": "npm install --omit=dev && npm run build",
     "lint": "next lint"
   },
   "dependencies": {
