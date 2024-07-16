@@ -1,31 +1,77 @@
-// "use client"
-// import { useEffect,useState } from "react";
+// // "use client"
+// // import { useEffect,useState } from "react";
 
-// export default function Post({params}){
-// const id=params.id;
+// // export default function Post({params}){
+// // const id=params.id;
 
-// const [post,setPost]=useState([]);
+// // const [post,setPost]=useState([]);
 
-// useEffect(()=>{
-// fetch(process.env.NEXT_PUBLIC_API_URL+"/post/"+id)
-// .then((response)=>response.json())
-// .then((response)=>setPost(response))
-// },[])
-//     return(
-//         <>
-//         {post && <main className="container mx-auto px-4 py-6">
-//         <p className="text-2xl font-bold mb-4">{post.title}</p>
-//         <p className="text-gray-500">{post.created_at_formatted}</p>
-//         <img src={post.image} alt="Post Image" className="my-4 w-96 h-64"/>
-//         <p>{post.description}</p>
-//     </main>
-//         }
-//         </>
-//     )
-// }
+// // useEffect(()=>{
+// // fetch(process.env.NEXT_PUBLIC_API_URL+"/post/"+id)
+// // .then((response)=>response.json())
+// // .then((response)=>setPost(response))
+// // },[])
+// //     return(
+// //         <>
+// //         {post && <main className="container mx-auto px-4 py-6">
+// //         <p className="text-2xl font-bold mb-4">{post.title}</p>
+// //         <p className="text-gray-500">{post.created_at_formatted}</p>
+// //         <img src={post.image} alt="Post Image" className="my-4 w-96 h-64"/>
+// //         <p>{post.description}</p>
+// //     </main>
+// //         }
+// //         </>
+// //     )
+// // }
 
-// "use client"
+// // "use client"
+// // import { useEffect, useState } from "react";
+
+// // export default function Post({ params }) {
+// //   const id = params.id;
+
+// //   const [post, setPost] = useState({});
+
+// //   useEffect(() => {
+// //     fetch(process.env.NEXT_PUBLIC_API_URL + "/post/" + id)
+// //       .then((response) => response.json())
+// //       .then((response) => setPost(response));
+// //   }, [id]);
+
+// //   // Function to split description into 3 parts
+// //   const splitDescription = (description) => {
+// //     if (!description) return [];
+// //     const words = description.split(' ');
+// //     const splitIndex1 = Math.ceil(words.length / 2);
+// //     const splitIndex2 = Math.ceil((2 * words.length) / 2);
+// //     return [
+// //       words.slice(0, splitIndex1).join(' '),
+// //       words.slice(splitIndex1, splitIndex2).join(' '),
+// //       words.slice(splitIndex2).join(' ')
+// //     ];
+// //   };
+
+// //   const descriptionParts = splitDescription(post.description);
+
+// //   return (
+// //     <>
+// //       {post && (
+// //         <main className="container mx-auto px-4 py-6">
+// //           <p className="text-2xl font-bold mb-4">{post.title}</p>
+// //           <p className="text-gray-500">{post.created_at_formatted}</p>
+// //           <img src={post.image} alt="Post Image" className="my-4 w-96 h-64" />
+// //           {descriptionParts.map((part, index) => (
+// //             <p key={index} className="mb-4">{part}</p>
+// //           ))}
+// //         </main>
+// //       )}
+// //     </>
+// //   );
+// // }
+
+// "use client";
 // import { useEffect, useState } from "react";
+// import Image from "next/image";
 
 // export default function Post({ params }) {
 //   const id = params.id;
@@ -38,16 +84,18 @@
 //       .then((response) => setPost(response));
 //   }, [id]);
 
-//   // Function to split description into 3 parts
+//   // Function to split description into 3 parts after full stops
 //   const splitDescription = (description) => {
 //     if (!description) return [];
-//     const words = description.split(' ');
-//     const splitIndex1 = Math.ceil(words.length / 2);
-//     const splitIndex2 = Math.ceil((2 * words.length) / 2);
+
+//     const sentences = description.match(/[^\.!\?]+[\.!\?]+/g); // Match sentences ending with . ! or ?
+//     if (!sentences) return [description];
+
+//     const third = Math.ceil(sentences.length / 3);
 //     return [
-//       words.slice(0, splitIndex1).join(' '),
-//       words.slice(splitIndex1, splitIndex2).join(' '),
-//       words.slice(splitIndex2).join(' ')
+//       sentences.slice(0, third).join(" "),
+//       sentences.slice(third, 2 * third).join(" "),
+//       sentences.slice(2 * third).join(" "),
 //     ];
 //   };
 
@@ -56,18 +104,94 @@
 //   return (
 //     <>
 //       {post && (
-//         <main className="container mx-auto px-4 py-6">
+//         <main className="container mx-auto px-4 py-6 mb-10 ">
 //           <p className="text-2xl font-bold mb-4">{post.title}</p>
 //           <p className="text-gray-500">{post.created_at_formatted}</p>
-//           <img src={post.image} alt="Post Image" className="my-4 w-96 h-64" />
+//           <Image
+//             src={post.image}
+//             width={1260} // Set the width property
+//             height={750} // Set the height property
+//             alt="Post Image"
+//             className="my-4 w-96 h-64 mt-8"
+//           />
+//           {/* <img src={post.image} alt="Post Image" className="my-4 w-96 h-64" /> */}
 //           {descriptionParts.map((part, index) => (
-//             <p key={index} className="mb-4">{part}</p>
+//             <p key={index} className="mb-4">
+//               {part}
+//             </p>
 //           ))}
 //         </main>
 //       )}
 //     </>
 //   );
 // }
+
+
+// "use client";
+// import { useEffect, useState } from "react";
+// import Image from "next/image";
+
+// interface Post {
+//   id: string;
+//   title: string;
+//   description: string;
+//   image: string;
+//   created_at_formatted: string;
+// }
+
+// export default function Post({ params }) {
+//   const id = params.id;
+
+//   const [post, setPost] = useState<Post | null>(null);
+
+//   useEffect(() => {
+//     fetch(process.env.NEXT_PUBLIC_API_URL + "/post/" + id)
+//       .then((response) => response.json())
+//       .then((response) => setPost(response))
+//       .catch((error) => console.error("Error fetching post:", error));
+//   }, [id]);
+
+//   // Function to split description into 3 parts after full stops
+//   const splitDescription = (description: string) => {
+//     if (!description) return [];
+
+//     const sentences = description.match(/[^\.!\?]+[\.!\?]+/g); // Match sentences ending with . ! or ?
+//     if (!sentences) return [description];
+
+//     const third = Math.ceil(sentences.length / 3);
+//     return [
+//       sentences.slice(0, third).join(" "),
+//       sentences.slice(third, 2 * third).join(" "),
+//       sentences.slice(2 * third).join(" "),
+//     ];
+//   };
+
+//   const descriptionParts = post?.description ? splitDescription(post.description) : [];
+
+//   return (
+//     <>
+//       {post && (
+//         <main className="container mx-auto px-4 py-6 mb-10">
+//           <p className="text-2xl font-bold mb-4">{post.title}</p>
+//           <p className="text-gray-500">{post.created_at_formatted}</p>
+//           <Image
+//             src={post.image || "/default-image.jpg"} // Use default image if post.image is missing
+//             width={1260} // Set the width property
+//             height={750} // Set the height property
+//             alt={post.title || "Post Image"}
+//             className="my-4 w-96 h-64 mt-8"
+//           />
+//           {descriptionParts.map((part, index) => (
+//             <p key={index} className="mb-4">
+//               {part}
+//             </p>
+//           ))}
+//         </main>
+//       )}
+//     </>
+//   );
+// }
+
 
 "use client";
 import { useEffect, useState } from "react";
@@ -76,12 +200,13 @@ import Image from "next/image";
 export default function Post({ params }) {
   const id = params.id;
 
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
     fetch(process.env.NEXT_PUBLIC_API_URL + "/post/" + id)
       .then((response) => response.json())
-      .then((response) => setPost(response));
+      .then((response) => setPost(response))
+      .catch((error) => console.error("Error fetching post:", error));
   }, [id]);
 
   // Function to split description into 3 parts after full stops
@@ -99,22 +224,22 @@ export default function Post({ params }) {
     ];
   };
 
-  const descriptionParts = splitDescription(post.description);
+  const descriptionParts = post?.description ? splitDescription(post.description) : [];
 
   return (
     <>
       {post && (
-        <main className="container mx-auto px-4 py-6 mb-10 ">
+        <main className="container mx-auto px-4 py-6 mb-10">
           <p className="text-2xl font-bold mb-4">{post.title}</p>
           <p className="text-gray-500">{post.created_at_formatted}</p>
-          {/* <Image
-            src={post.image}
+          <Image
+            // src={post.image || "/default-image.jpg"} // Use default image if post.image is missing
+            src="/water.jpg"
             width={1260} // Set the width property
             height={750} // Set the height property
-            alt="Post Image"
+            alt={post.title || "Post Image"}
             className="my-4 w-96 h-64 mt-8"
-          /> */}
-          <img src={post.image} alt="Post Image" className="my-4 w-96 h-64" />
+          />
           {descriptionParts.map((part, index) => (
             <p key={index} className="mb-4">
               {part}
