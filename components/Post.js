@@ -229,11 +229,17 @@ export default function Post({ params }) {
   return (
     <>
       {post && (
-        <main className="container mx-auto px-4 py-6 mb-10">
+        <main className="container mx-auto px-4 py-6 mb-10"
+        style={{
+          background: 'linear-gradient(to right, #d7c5b7,#f2ece7)', // Example gradient
+          minHeight: '100vh', // Ensures the gradient covers the full viewport height
+        }}
+        
+        >
           <p className="text-2xl font-bold mb-4">{post.title}</p>
           <p className="text-gray-500">{post.created_at_formatted}</p>
           <Image
-            src={post.image || "/water.jpg"}
+            src={post.image}
             // src="/water.jpg"
             width={1260} // Set the width property
             height={750} // Set the height property

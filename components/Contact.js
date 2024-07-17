@@ -36,7 +36,12 @@ fetch(process.env.NEXT_PUBLIC_API_URL +"/enquiry",{
 
 
   return (
-    <main className="container mx-auto px-4 py-6">
+    <main className="container mx-auto px-4 py-6 "
+    style={{
+      background: 'linear-gradient(to right,  #d7c5b7,#f2ece7)', // Example gradient
+      minHeight: '100vh', // Ensures the gradient covers the full viewport height
+    }}
+    >
       <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
       <form onSubmit ={handleSubmit} className="w-full max-w-lg">
         <div className="flex items-center mb-4">
