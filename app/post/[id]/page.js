@@ -5,8 +5,9 @@ export async function generateMetadata({ params }) {
 
   const post = await fetch(
     // process.env.NEXT_PUBLIC_API_URL + "/post/" + id
-    "http://localhost:3000/api" + "/post/" + id
-  ).then((response) => response.json());
+     process.env.NEXT_PUBLIC_API_URL + "/post/" + id
+  )
+  .then((response) => response.json());
 
   return {
     title: post.title,

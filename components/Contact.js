@@ -17,7 +17,7 @@ const handleInput=(event)=>{
 
 const handleSubmit=(event)=>{
 event.preventDefault();
-fetch("http://localhost:3000/api" +"/enquiry",{
+fetch(process.env.NEXT_PUBLIC_API_URL +"/enquiry",{
   method:"POST",
   body:JSON.stringify(inputs)
 

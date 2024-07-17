@@ -201,7 +201,7 @@ export default function Post({ params }) {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api" + "/post/" + id)
+    fetch(process.env.NEXT_PUBLIC_API_URL + "/post/" + id)
       .then((response) => response.json())
       .then((response) => setPost(response))
       .catch((error) => console.error("Error fetching post:", error));
@@ -233,8 +233,8 @@ export default function Post({ params }) {
           <p className="text-2xl font-bold mb-4">{post.title}</p>
           <p className="text-gray-500">{post.created_at_formatted}</p>
           <Image
-            // src={post.image || "/default-image.jpg"} // Use default image if post.image is missing
-            src="/water.jpg"
+            src={post.image || "/water.jpg"}
+            // src="/water.jpg"
             width={1260} // Set the width property
             height={750} // Set the height property
             alt={post.title || "Post Image"}

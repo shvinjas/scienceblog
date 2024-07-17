@@ -241,7 +241,9 @@ export default function Home() {
 
     setSearch(true);
 
-    fetch("http://localhost:3000/api" + "/posts?q=" + inputRef.current?.value)
+    fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/posts?q=" + inputRef.current?.value
+    )
       .then((response) => response.json())
       .then((response) => setPosts(response))
       .finally(() => setSearch(false));
@@ -289,8 +291,8 @@ export default function Home() {
             <div className="border border-gray-200 p-4">
               <Image
                 className="w-full h-54 object-cover mb-4"
-                // src={post.image}
-                src="/water.jpg"
+                src={post.image}
+                // src="/water.jpg"
                 width={1260} // Set the width property
                 height={750} // Set the height property
                 alt="Post Image"

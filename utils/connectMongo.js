@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const connectMongo=async()=>mongoose.connect("mongodb+srv://shvinjas:PUjZrublQTrpo6EW@cluster0.bpmkupr.mongodb.net/nextjs_scienceblog?retryWrites=true&w=majority&appName=Cluster0")
+const connectMongo=async()=>mongoose.connect(process.env.MONGO_URI)
 
 
 export default connectMongo;
