@@ -205,7 +205,6 @@
 // //   );
 // // }
 
-
 "use client";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
@@ -242,9 +241,7 @@ export default function Home() {
 
     setSearch(true);
 
-    fetch(
-      process.env.NEXT_PUBLIC_API_URL + "/posts?q=" + inputRef.current?.value
-    )
+    fetch("http://localhost:3000/api" + "/posts?q=" + inputRef.current?.value)
       .then((response) => response.json())
       .then((response) => setPosts(response))
       .finally(() => setSearch(false));
@@ -298,7 +295,7 @@ export default function Home() {
                 height={750} // Set the height property
                 alt="Post Image"
               />
-                {/* <img
+              {/* <img
                 className="w-full h-54 object-cover mb-4"
                 src={post.image}
                 alt="Post Image"
@@ -317,4 +314,3 @@ export default function Home() {
     </div>
   );
 }
-
