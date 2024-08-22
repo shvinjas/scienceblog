@@ -144,14 +144,14 @@ export default function Home() {
   };
 
   return (
-    <div className="mb-10"   
-    
-    style={{
-      background: 'linear-gradient(to right, #d7c5b7,#f2ece7)', // Example gradient
-      minHeight: '100vh', // Ensures the gradient covers the full viewport height
-    }}
+    <div
+      className=""
+      style={{
+        background: "linear-gradient(to right, #d7c5b7,#f2ece7)", // Example gradient
+        minHeight: "100vh", // Ensures the gradient covers the full viewport height
+      }}
     >
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-6 ">
         <h2 className="text-4xl font-bold mb-4">Welcome to Our Blog</h2>
         <p>
           Welcome to Science Unveiled, your gateway to the wonders of the
